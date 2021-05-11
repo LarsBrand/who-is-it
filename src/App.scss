@@ -1,0 +1,95 @@
+body {
+  background: #222;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing:border-box;
+  margin:0;
+  padding:30px;
+  overflow:hidden;
+}
+
+.gradient-border {
+  --border-width: 70px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: Lato, sans-serif;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: white;
+  background: #222;
+  border-radius: var(--border-width);
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(
+      60deg,
+      hsl(224, 85%, 66%),
+      hsl(269, 85%, 66%),
+      hsl(314, 85%, 66%),
+      hsl(359, 85%, 66%),
+      hsl(44, 85%, 66%),
+      hsl(89, 85%, 66%),
+      hsl(134, 85%, 66%),
+      hsl(179, 85%, 66%)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 4s alternate infinite;
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.container{
+  max-width:100%;
+  max-height:100%;
+  box-sizing: border-box;
+  margin: 50px;
+  display:flex;
+}
+
+
+.zoomer {
+  transition: max-height 1.5s, max-width 1.5s, border 1.5s;
+  max-height: calc(100vh - 100px);
+  max-width: calc(100vw - 100px);
+  box-sizing: border-box;
+  border: 1px solid #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &.small{
+    max-width: 150px;
+    max-height: 150px;
+    border: 3px solid white;
+    -webkit-box-shadow: 0px 2px 41px 9px rgba(191,191,191,0.69); 
+    box-shadow: 0px 2px 41px 9px rgba(191,191,191,0.69);
+  }
+  
+  &>img{
+    height: 100vh;
+  }
+}
