@@ -1,15 +1,19 @@
 import './App.scss';
-import Photobox from './Photobox';
+import PhotoCarousal from './PhotoCarousel';
+import WithStateContext from './StateContext';
+import WithHotKeys from './WithHotKeys';
 
 function App() {
   return (
-    <div className="app">
-      <div className="gradient-border">
-        <div className="container">
-          <Photobox/>
+    <WithStateContext>
+      <WithHotKeys>
+        <div className="app">
+          <div className="gradient-border">
+            <PhotoCarousal/>        
+          </div>
         </div>
-      </div>
-    </div>
+      </WithHotKeys>
+    </WithStateContext>
   );
 }
 

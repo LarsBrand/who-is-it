@@ -1,14 +1,15 @@
 import React from 'react'
+import { StateContext } from './StateContext';
 
-function Photobox() {
-  const [isSmall, setIsSmall]= React.useState(true)
+function Photobox(props) {  
+  const {isOpen, toggleIsOpen}= React.useContext(StateContext)
+  const isSmall= !props.active || !isOpen
 
   return (
-    <div className="photobox" onClick={()=>setIsSmall(!isSmall)}>
+    <div className={`photobox ${props.className||''}`} onClick={toggleIsOpen}>
       <div className={`zoomer ${isSmall?'small':''}`}>
-        <img src="https://i.redd.it/3nwl8wsyehu51.jpg" alt='guess who'/>
+        <img src={props.url} alt='guess who'/>
       </div>
-      <div class="spotlight"></div>
     </div>
   );
 }
