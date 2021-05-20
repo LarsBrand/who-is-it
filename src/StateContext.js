@@ -1,19 +1,20 @@
 import React from 'react'
-import debounce from 'lodash.debounce'
-
+import debounce from 'lodash.debounce' 
+import usePersistantState from './usePersistantState'
 
 const defaultImages =[
-  {url:"https://i.redd.it/3nwl8wsyehu51.jpg"},
-  {url:"https://placekitten.com/200/300"},
-  {url:"https://placedog.net/500"}
+  {url:"https://i.redd.it/3nwl8wsyehu51.jpg", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }},
+  {url:"https://placekitten.com/200/300", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }},
+  {url:"https://placedog.net/500", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }}
 ]
-export const StateContext = React.createContext({images:defaultImages});
+export const StateContext = React.createContext();
 
 function WithStateContext(props) {
+  const [isEditMode, setIsEditMode]= React.useState(false)
   const [index, setIndex]= React.useState(0)
   const [isOpen, setIsOpen]= React.useState(false)
   const [runningAnimation, setRunningAnimation]= React.useState("")
-  const images=props.images || defaultImages
+  const [images, setImages] = usePersistantState(defaultImages, "stored_config")
 
   const applyState = React.useCallback((newIndex)=>{
     setRunningAnimation("")
@@ -43,6 +44,11 @@ function WithStateContext(props) {
     e.preventDefault()
     setIsOpen(!isOpen)
   }, [isOpen, setIsOpen])
+  
+  const toggleIsEditMode=  React.useCallback((e)=>{
+    e.preventDefault()
+    setIsEditMode(!isEditMode)
+  }, [isEditMode, setIsEditMode])
 
 const value = {
   images,
@@ -53,7 +59,10 @@ const value = {
   nextIndex, 
   previousIndex,
   isOpen,
-  toggleIsOpen
+  toggleIsOpen,
+  isEditMode,
+  toggleIsEditMode,
+  setImages
 }
 
   return (
