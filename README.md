@@ -3,9 +3,9 @@
 this is a small game that was developed for a family gathering.
 
 ## Objective
-The sets op a bunch of zoomed in images.      
+The host sets op a bunch of zoomed in images.      
 Participants try to guess who it is.     
-after eveveryone has made their guess the host reveals the answer and full image.
+After eveveryone has made their guess the host reveals the answer and full image.
 
 
 ## Controls
