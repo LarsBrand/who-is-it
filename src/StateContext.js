@@ -3,9 +3,9 @@ import debounce from 'lodash.debounce'
 import usePersistantState from './usePersistantState'
 
 const defaultImages =[
-  {url:"https://i.redd.it/3nwl8wsyehu51.jpg", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }},
-  {url:"https://placekitten.com/200/300", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }},
-  {url:"https://placedog.net/500", closed: { boxHeight: '150px', boxWidth: '150px', imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { }}
+  {url:"https://i.redd.it/3nwl8wsyehu51.jpg", closed: { boxHeight: 150, boxWidth: 150, imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { name:'sexy jigsaw' }},
+  {url:"https://placekitten.com/200/300", closed: { boxHeight: 150, boxWidth: 150, imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { name:'cure kitten' }},
+  {url:"https://placedog.net/500", closed: { boxHeight: 150, boxWidth: 150, imageZoom:1, imageTranslateX:0, imageTranslateY:0}, open: { name:'mystery dog' }}
 ]
 export const StateContext = React.createContext();
 

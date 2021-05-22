@@ -195,3 +195,56 @@ body {
   border: 2px dashed #333;
   mix-blend-mode: hard-light;
 }
+
+.edit-controls{
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #2c2c2c42;}
+
+
+
+  .title {
+    font-size: 6rem;
+    font-family: "Knewave", cursive;
+    text-transform: uppercase;
+    z-index: 100;
+    bottom: 10%;
+    position: absolute;
+    max-width: 80vw;
+    word-break: break-word;
+  /*   text-shadow: 1px 1px gray, 2px 2px gray, 3px 3px lightgray, 4px 4px blue,
+      5px 5px lime, 6px 6px gray, 7px 7px purple, 8px 8px pink, 9px 9px blue,
+      10px 10px green, 11px 11px 15px rgba(0, 0, 0, 0.5); */
+    animation: glow 0.1s infinite alternate;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    background: #0000003b;
+    padding: 0 20px;
+
+    &.open{
+      opacity: 1;
+      transition:  opacity 1s;
+    }
+  }
+  
+  
+  @keyframes glow {
+    from{
+          text-shadow: 1px 1px white, 2px 2px blue, 3px 3px pink, 4px 4px purple,
+      5px 5px grey, 6px 6px lime, 7px 7px orange, 8px 8px grey, 9px 9px purple,
+      10px 10px blue, 11px 11px 15px rgba(0, 0, 0, 0.5);
+     
+    }
+      to {
+          text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px gray, 3px 3px lightgray, 4px 4px blue,
+      5px 5px lime, 6px 6px gray, 7px 7px purple, 8px 8px pink, 9px 9px blue,
+      10px 10px green, 11px 11px 15px rgba(0, 0, 0, 0.5);
+       
+      }
+  }

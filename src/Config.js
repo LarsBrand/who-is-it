@@ -2,8 +2,55 @@ import React from 'react'
 import { StateContext } from './StateContext';
 
 function Config(props) {  
-  const {toggleIsEditMode}= React.useContext(StateContext)
-  
+  const {toggleIsEditMode, images, index, setImages, isEditMode}= React.useContext(StateContext)
+  const setNewHeightBox =  React.useCallback((event)=>{
+    const newImages = [...images]
+    newImages[index].closed = newImages[index].closed || {}
+    newImages[index].closed.boxHeight = event.target.value || 150
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const setNewWidthBox =  React.useCallback((event)=>{
+    const newImages = [...images]
+    newImages[index].closed = newImages[index].closed || {}
+    newImages[index].closed.boxWidth = event.target.value || 150
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const setNewURL =  React.useCallback((event)=>{
+    const newImages = [...images]
+    newImages[index].url = event.target.value || ''
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const setNewName =  React.useCallback((event)=>{
+    const newImages = [...images]
+	newImages[index].open = newImages[index].open || {}
+    newImages[index].open.name = event.target.value || ''
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const onDelete =  React.useCallback(()=>{
+    const newImages = [...images]
+	newImages.splice(index,1)
+	console.log(newImages)
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const onNew =  React.useCallback(()=>{
+    const newImages = [...images]
+	newImages.splice(index,0, {url:''})
+	console.log(newImages)
+    setImages(newImages)
+  },[index, setImages, images])
+
+  const setConfig =  React.useCallback((event)=>{
+	try{ 
+		const newConfig = JSON.parse(event.target.value)
+		setImages(newConfig)
+	}
+	catch{}
+  },[setImages])
 
   return (
     <>
@@ -43,6 +90,23 @@ function Config(props) {
 			  S62.515,43.1,62.515,50S56.901,62.515,50,62.515L50,62.515z"/>
       </svg>
     </div>
+	{isEditMode && <div class='edit-controls'>
+	  <div> 
+		<button onClick={onNew}>new</button>
+		<button onClick={onDelete}>delete</button>
+	  </div>
+	  <div>name</div>
+	  <input type="text" value={images[index].open?.name||''} onChange={setNewName} />
+	  <div>URL</div>
+	  <input type="text" value={images[index].url||''} onChange={setNewURL} />
+	  <div>Box</div>
+	  <input type="number" value={images[index].closed?.boxHeight || 150} onChange={setNewHeightBox} />
+	  <input type="number" value={images[index].closed?.boxWidth || 150} onChange={setNewWidthBox} />
+	  
+	  <div>raw config</div>
+	  <textarea value={JSON.stringify(images)} onChange={setConfig}/>
+	</div>
+	}
     </>
   );
 }
