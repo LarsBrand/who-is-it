@@ -2,6 +2,9 @@
 
 this is a small game that was developed for a family gathering.
 
+## Play
+It's hosted: https://lb-who-is-it.herokuapp.com/
+
 ## Objective
 The host sets op a bunch of zoomed in images.      
 Participants try to guess who it is.     
