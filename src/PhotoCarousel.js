@@ -39,7 +39,7 @@ function PhotoCarousel() {
         boxWidth={images[index].closed?.boxWidth}
         scale={images[index].closed?.imageZoom}
         name={images[index].open?.name}
-        setTranslate={setTranslate}
+        setTranslate={setTranslate} 
         setScale={setScale}
         active={true}/>
       {!isEditMode && <Photobox className={`next ${runningAnimation==="next"? 'go-to-active':''}`} url={images[nextIndex].url}       
